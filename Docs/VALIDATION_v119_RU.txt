@@ -1,0 +1,14 @@
+ПРОВЕРКА v1.19
+
+[OK] Python syntax: py_compile для всех .py.
+[OK] В __init__ отсутствуют after(150, autoconnect) и after(16, animation_tick).
+[OK] На старте отсутствует _refresh_midi_ports().
+[OK] В коде нет focus_force / grab_set / topmost.
+[OK] focus_set используется только в ручном numeric entry после double-click.
+[OK] MIDI connect остаётся только через APPLY.
+[OK] Animation scheduler запускается по требованию и использует 33 ms (~30 FPS), а не постоянный 16 ms loop.
+[OK] OSC morph общий для всех трёх OSC и начинается с Triangle.
+[OK] Saw->Square вычисляется непрерывной интерполяцией.
+[OK] FILTER protocol_map сохраняет подтверждённые CC/mode/link mappings.
+
+Важно: WinMM/USB поведение нельзя полноценно проверить в Linux-контейнере. Первый запуск на Windows рекомендуется сделать OFFLINE и проверить, что курсор/фокус больше не перехватываются до открытия SETTINGS/APPLY.

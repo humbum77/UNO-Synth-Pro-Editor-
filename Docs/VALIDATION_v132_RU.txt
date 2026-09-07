@@ -1,0 +1,12 @@
+UNO Synth Pro Editor v1.32 — VALIDATION
+
+PASS — Python syntax (py_compile).
+PASS — Tk runtime launch under Xvfb.
+PASS — runtime SYNTH preview generated: Docs/layout_preview_v132_synth.png.
+PASS — OSC1/OSC2/OSC3/NOISE outer frame height = 201.5 px.
+PASS — gap between upper and lower oscillator rows = 3.5 px.
+PASS — Mini Manual area = 64.5 px high (was 129 px).
+PASS — Mini Manual source is Assets/MANUAL_real_SYNTH_scale.png; aspect ratio preserved.
+PASS — internal OSC waveform size remains 112x112 and vertical fader length remains 88 px.
+PASS — display label for OSC2/OSC3 FM faders is FM; parameter keys remain FM12/FM13.
+PASS — draw_seq and all following source code textually identical to v1.31 baseline.

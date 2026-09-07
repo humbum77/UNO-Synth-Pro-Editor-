@@ -1,0 +1,11 @@
+UNO Synth Pro Editor v1.36 — VALIDATION
+
+PASS: Python syntax (py_compile).
+PASS: Tk runtime launch under Xvfb (process remained active until test timeout).
+PASS: OSC/NOISE vertical faders: +10 px top / -10 px bottom vs v1.35.
+PASS: FILTER vertical faders: +10 px top / -10 px bottom vs v1.35.
+PASS: LFO vertical faders: +10 px top / -10 px bottom vs v1.35.
+PASS: ENV ADSR excluded from global 10+10 shortening.
+PASS: ENV LOOP/RETRIG size 70x28 px and positioned beneath ADSR groups.
+PASS: ENV fader-to-button vertical gap = 10 px.
+PASS: rotated vertical-label top edge anchored to fader-line top.

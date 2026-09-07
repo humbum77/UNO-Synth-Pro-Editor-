@@ -1,0 +1,8 @@
+UNO Synth Pro Editor v1.24 — ARP+SEQUENCER keyboard cleanup
+
+Изменения только на странице ARP + SEQUENCER:
+1. Удален ошибочно добавленный локальный блок KEYBOARD & RANGE из самой страницы секвенсора.
+2. Глобальная клавиатура редактора не изменялась.
+3. Фейдеры RATE / GATE / SWING в ARPEGGIATOR центрированы по ширине панели.
+4. Остальная компоновка ARP + SEQUENCER сохранена без изменений.
+5. SYNTH, SONG, LIBRARY и SETTINGS не изменялись.

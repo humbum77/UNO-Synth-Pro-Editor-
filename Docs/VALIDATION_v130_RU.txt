@@ -1,0 +1,18 @@
+VALIDATION v1.30
+
+1. Python compile: PASS
+   app.py, main.py, data_model.py, midi_engine.py, midi_interface.py, protocol_map.py, storage.py.
+
+2. Runtime SYNTH render under Tk/Xvfb: PASS
+   Preview: Docs/layout_preview_v130_synth.png
+
+3. User layout reference included:
+   Docs/layout_reference_v130_user.png
+
+4. Source comparison against original v1.29:
+   - draw_seq and all code after draw_seq: IDENTICAL.
+   - FX block body: IDENTICAL.
+   - MOD MATRIX block body: IDENTICAL.
+
+5. No standalone MIDI Monitor included.
+6. No __pycache__ / .pyc included.

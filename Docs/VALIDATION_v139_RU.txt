@@ -1,0 +1,5 @@
+Проверка v1.39
+- Python syntax / py_compile: PASS
+- Tk launch under Xvfb: PASS (приложение оставалось запущенным до тестового timeout)
+- Проверены изменения исходника: ADSR defaults, VOICE button width, redraw playback indicator: PASS
+- ZIP integrity: PASS

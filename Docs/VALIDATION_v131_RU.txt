@@ -1,0 +1,13 @@
+VALIDATION v1.31
+
+PASS — Python syntax: app.py, main.py, data_model.py, midi_engine.py, midi_interface.py, protocol_map.py, storage.py.
+PASS — Runtime Tk/Xvfb launch and SYNTH render.
+PASS — runtime preview saved: Docs/layout_preview_v131_synth.png.
+PASS — OSC1/OSC2/OSC3/NOISE use one common cell_h=170.
+PASS — internal OSC control sizes remain v1.30 values (WAVE 112x112; vertical faders length 88).
+PASS — Mini Manual has no self.rect outer frame and is compacted on X.
+PASS — NOISE symbol is static MUTED-grey canvas line, with no graph frame and no hitbox.
+PASS — FX source block textually identical to v1.30 baseline.
+PASS — MOD MATRIX source block textually identical to v1.30 baseline.
+PASS — draw_seq and all following source code textually identical to v1.30 baseline.
+PASS — ZIP integrity checked with unzip -t.

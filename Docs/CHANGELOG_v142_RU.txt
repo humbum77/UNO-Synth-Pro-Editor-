@@ -1,0 +1,22 @@
+UNO Synth Pro Editor v1.42 — cumulative build
+
+База: v1.40 + MIDI Matrix/FX из тестовой v1.41 + все зафиксированные после v1.40 изменения.
+
+FX GUI:
+- MODULATION: CHORUS / PHASER / FLANGER — кнопки; второй уровень — dropdown.
+  CHORUS: SYNTH I / SYNTH II / STRING; PHASER: COLOR 1 / COLOR 2; FLANGER: пусто.
+  CHORUS: INTENSITY + RATE; PHASER: RATE; FLANGER: DEPTH + FEEDBACK + RATE.
+  AMOUNT всегда отдельным нижним фейдером.
+- DELAY: MONO / STEREO / DOUBLER / PING PONG / LCR — кнопки; dropdown типа удален.
+  Все рабочие параметры — фейдеры. Добавлен компактный SYNC checkbox.
+  AMOUNT всегда отдельным нижним фейдером.
+- REVERB: HALL / PLATE / REVERSE / SPRING — кнопки; dropdown типа удален.
+  Все параметры — фейдеры; HALL/PLATE показывают LOW TIME/HIGH TIME.
+  AMOUNT всегда отдельным нижним фейдером.
+- DRIVE: новых контролов нет; контейнер уменьшен по высоте для перераспределения места.
+- Кнопки режимов: стандартная высота/отступы, компактная ширина.
+
+Ранее зафиксированное:
+- MIDI Matrix Amount CC66..81 и FX CC90..114 из v1.41 сохранены.
+- Numeric entry после double-click больше не закрывается от FocusOut/обычного mouse click; Enter применяет, Esc отменяет.
+- Огибающие можно захватывать по всей линии (расширенные hit-зоны сегментов), точки сохранены.

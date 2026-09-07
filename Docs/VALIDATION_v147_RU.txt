@@ -1,0 +1,11 @@
+v1.47 validation
+- Python syntax: PASS
+- GUI launch under virtual display: PASS
+- Local storage path + *.unosyp discovery/save: PASS
+- songs path + *.unosong save/list: PASS
+- Sequencer Note On/Off smoke test: PASS
+- RESTORE absent from runtime source: PASS
+- Hardware-confirmed FX enum values unchanged: PASS
+- ZIP integrity: checked after packaging
+
+Важно: реальное UNO hardware-тестирование v1.47 должен выполнить пользователь. STORE permanent write остаётся locked до подтверждения bulk-write 0x28.

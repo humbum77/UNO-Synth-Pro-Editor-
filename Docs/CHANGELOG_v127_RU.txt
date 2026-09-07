@@ -1,0 +1,9 @@
+UNO Synth Pro Editor v1.27
+
+ARP + SEQUENCER:
+1. MOD 1–4 переименованы в LINE 1–4.
+2. TARGET очищен: доступны только CUTOFF 1, CUTOFF 2, RESONANCE 1, RESONANCE 2, WAVE 1, WAVE 2, WAVE 3, SPACING, FM 1, FM 2.
+3. Старые/неподдерживаемые TARGET при загрузке автоматически заменяются на CUTOFF 1.
+4. Ноты Piano Roll визуально занимают полную ширину шага; LENGTH больше не меняет ширину прямоугольника ноты.
+5. Общий горизонтальный scrollbar перенесён непосредственно под Piano Roll и по-прежнему синхронно прокручивает Piano Roll, Step Parameter и LINE Automation.
+6. SYNTH не изменён.

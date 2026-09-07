@@ -1,0 +1,24 @@
+VALIDATION v1.46
+
+1. Python syntax compile: PASS
+   app.py, storage.py, data_model.py, protocol_map.py, main.py, midi_engine.py, midi_interface.py
+
+2. Headless Tk GUI smoke test under Xvfb: PASS
+   - redraw SYNTH / ARP + SEQUENCER / SONG / LIBRARY
+   - keyboard enabled on all 4 main pages
+   - stable design height = 1000
+   - inline Library search widget created
+   - synth RANDOM executes
+   - sequencer RANDOM executes
+   - INIT executes
+
+3. *.unosyp opaque/binary listing test: PASS
+   Binary .unosyp is displayed by filename instead of being discarded as invalid JSON.
+
+4. Hardware-confirmed FX enum values audit: PASS
+   MOD [0,42,84], DELAY [0,25,50,75,100], REVERB [0,32,64,96]
+
+5. Permanent hardware preset write remains LOCKED.
+
+Known scope note:
+Official opaque/binary *.unosyp files can be imported, listed, renamed, copied, cut, pasted and deleted. Full decoding/editing of an undocumented opaque binary preset payload is not claimed by this build.

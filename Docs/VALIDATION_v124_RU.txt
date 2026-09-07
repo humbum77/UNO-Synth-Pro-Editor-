@@ -1,0 +1,12 @@
+UNO Synth Pro Editor v1.24 — проверка сборки
+
+Проверено:
+- Python py_compile: OK.
+- Runtime запуск под Xvfb: OK, ошибок Tk в журнале нет.
+- Страница ARP + SEQUENCER открыта в реальном runtime и сохранена в Docs/layout_preview_v124.png.
+- Локальный блок KEYBOARD & RANGE на странице ARP + SEQUENCER отсутствует.
+- Единственная видимая нижняя клавиатура — существующая глобальная клавиатура редактора; ее код не менялся.
+- RATE / GATE / SWING центрированы в панели ARPEGGIATOR: x=72.5, width=170, центр=157.5; центр панели x=157.5.
+- По diff app.py относительно v1.23 изменены только комментарий версии, координаты трех ARP-фейдеров и удален локальный блок клавиатуры страницы.
+- data_model.py, main.py, midi_engine.py, midi_interface.py, protocol_map.py, storage.py идентичны v1.23 по SHA-256.
+- SYNTH / SONG / LIBRARY / SETTINGS не редактировались.

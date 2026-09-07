@@ -1,0 +1,12 @@
+VALIDATION v1.23
+
+- python -m py_compile: PASS
+- Runtime launch under Xvfb 1100x690: PASS
+- Runtime screenshot: Docs/layout_preview_v123.png
+- Source comparison against v1.22:
+  draw_synth: IDENTICAL
+  draw_song: IDENTICAL
+  draw_library: IDENTICAL
+  draw_settings: IDENTICAL
+- Common sequencer grid: piano roll / step parameter / MOD automation share grid_x, grid_w and cw.
+- Standalone MIDI Monitor is not included.

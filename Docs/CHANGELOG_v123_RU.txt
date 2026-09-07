@@ -1,0 +1,20 @@
+UNO Synth Pro Editor v1.23 — FINAL ARP + SEQUENCER
+
+Собрана страница ARP + SEQUENCER по утвержденному финальному рисунку.
+
+Проверенный пакет изменений:
+1. SYNTH не изменялся.
+2. SONG / LIBRARY / SETTINGS не изменялись.
+3. ARPEGGIATOR слева: ON, HOLD, MODE, RANGE, STEPS, RATE, GATE, SWING, PATTERN 1–16 (2x8). OCTAVE и REPEAT отсутствуют.
+4. Центральный piano-roll: узкая клавиатура, до 3 нот на шаг, 8/16/32/64 видимых шагов.
+5. GATE / ACC / VELOCITY / LENGTH используют один общий нижний редактор.
+6. Piano-roll, Step Parameter и MOD Automation используют один и тот же X-grid.
+7. TIE сохранен в заголовке Step Parameter.
+8. MOD1–MOD4 + TARGET находятся в заголовке automation lane. Отдельного MODULATION-блока нет.
+9. Справа: RUN/STOP, SEQUENCE EDIT (CLEAR/COPY/PASTE/FILL), SEQUENCE SETTINGS.
+10. SEQUENCE SETTINGS: OVERDUB MONO/POLY, TRANSPOSE, SWING, LENGTH, RESOLUTION, STRAIGHT/TRIPLET/DOTTED.
+11. DIRECTION / RESTART / KEY SYNC / LATCH / SCALE / PLAYBACK / INIT отсутствуют.
+12. Нижний KEYBOARD & RANGE собран по финальному рисунку.
+13. LENGTH default для нового шага = 0.6. В нижнем редакторе 0.6 находится близко к нижней позиции шкалы.
+14. VELOCITY и LENGTH редактируются в UI; их обратная запись в железо остается экспериментальной до подтверждения SysEx.
+15. SAFE START сохранен: MIDI не открывается автоматически при запуске.

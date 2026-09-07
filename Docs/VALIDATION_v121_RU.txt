@@ -1,0 +1,7 @@
+Проверки сборки v1.21:
+- Python py_compile: PASS.
+- ZIP integrity: выполняется перед выдачей.
+- Safe Start сохранён: автоматическое открытие MIDI-портов при запуске отсутствует.
+- FILTER MIDI-карта из v1.20 сохранена без изменений.
+- OSC WAVE screen-drag использует существующие CC OSC1/2/3 WAVE.
+- MOD MATRIX hardware-write не заявляется: протокол Matrix ещё исследуется.

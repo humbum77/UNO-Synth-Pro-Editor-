@@ -1,0 +1,19 @@
+UNO Synth Pro Editor v1.16 — DISPLAY / SHUTDOWN / OSC LAYOUT
+
+Текущий пакет исправлений:
+1. Графические экраны OSC WAVE, LFO, FILTER и обеих ENV рисуются через supersampling 4x + LANCZOS downsample.
+   Это настоящий anti-aliasing границ линии. Геометрия не скругляется искусственно.
+2. Плавность изменения параметров и anti-aliasing разделены: изменение формы интерполируется отдельно, линия рендерится гладко отдельно.
+3. ENV: A=0, D=0, S=127, R=0 остается прямоугольной/угловой формой; Release влияет на последний участок.
+4. FILTER: одновременно рисуются F1 и F2; LP/HP/BYPASS и отличие 2P/4P сохранены из согласованной модели v1.15.
+5. INIT FILTER: Cutoff 127 / Res 0 / Env 0 / Track 0. Spacing default 0.
+6. MOD MATRIX Amount: default 0 для всех 16 маршрутов.
+7. OSC2/OSC3: TUNE/FINE/FM подняты еще выше. NOISE перенесен на одну горизонталь с LEVEL OSC3.
+8. Постоянные цифровые значения на линиях отсутствуют; значения показываются временным popup при редактировании.
+9. LFO display показывает waveform, не число.
+10. Закрытие приложения: GUI больше не ждет синхронного WinMM close. MIDI callback отключается, окно закрывается сразу, WinMM close выполняется в daemon worker.
+11. MIDI mapping и подтвержденные MIDI-команды не менялись в этом пакете.
+
+Важно:
+- CUTOFF / CUT+RES и точные значения режимов FILTER по MIDI не угадывались. Их продолжаем исследовать через Monitor.
+- Для anti-aliasing нужен Pillow. run_editor.bat проверяет его и при отсутствии предлагает/запускает установку из requirements.txt.

@@ -1,0 +1,8 @@
+v1.25 validation
+- Python compile: PASS
+- Tk runtime startup under Xvfb: PASS
+- ARP + SEQUENCER redraw: PASS
+- SYNTH draw_synth source vs v1.24: IDENTICAL
+- MOD Pencil local data: 4 subpoints/step, Shift+LMB path implemented
+- Normal MOD LMB: step-level editing preserved
+- No standalone MIDI Monitor included

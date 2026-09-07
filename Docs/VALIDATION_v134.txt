@@ -1,0 +1,10 @@
+Validation targets:
+- Python syntax: PASS
+- Mini Manual draw block: removed
+- OSC row gap: 10 px
+- OSC/NOISE frame height: 231.5 px
+- popup value styling: LIGHT_GREY
+- dropdown overlay styling: LIGHT_GREY
+- graph dark background/border: removed; Pillow graph image transparent
+- startup geometry: 1375x859 (+25% from 1100x690 baseline, rounded to preserve 1600:1000 ratio)
+- resize aspect constraint: enabled via wm_aspect

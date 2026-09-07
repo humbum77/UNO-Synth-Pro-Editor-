@@ -1,0 +1,17 @@
+UNO Synth Pro Editor v1.12 — проверка текущего пакета SETTINGS
+
+Исправлено:
+1. SETTINGS используют выпадающие списки, а не перебор стрелками.
+2. MIDI IN CHANNEL содержит OMNI + 1–16.
+3. MIDI CONTROLLER присутствует.
+4. Выбор значения MIDI CONTROLLER сам по себе не открывает устройство: подключение выполняется только через APPLY.
+5. Списки WinMM MIDI IN/OUT кэшируются и не опрашиваются при каждой перерисовке SETTINGS.
+6. APPLY и стартовое MIDI-подключение выполняются в рабочем потоке; Tk UI опрашивает результат через очередь, чтобы медленный MIDI-драйвер не блокировал интерфейс.
+
+Проверено:
+- py_compile для всех .py: OK
+- headless startup: OK (процесс оставался в mainloop до тестового timeout)
+- наличие dropdown hitboxes / OMNI / MIDI CONTROLLER / async MIDI connect: OK
+
+Важно по MIDI mapping:
+Текущая версия НЕ имеет полного связывания каждого элемента UI со всей MIDI Implementation Chart. Реальный MIDI output включен только для параметров, которые есть в protocol_map.CC, плюс подтвержденные ARP SysEx, Program/Bank, клавиатура, Mod Wheel/Pitch Bend и READ 0x37. Остальные UI-параметры пока могут быть только визуальными/локальными до точного сопоставления.

@@ -1,0 +1,14 @@
+UNO Synth Pro Editor v1.41 — MIDI Matrix + FX test build
+
+Источник MIDI mapping: официальный IK Multimedia UNO Synth Pro MIDI Implementation Chart v1.0.0.
+
+Изменения:
+- Mod Matrix Amount slots 1..16: CC66..81, Editor -> UNO и UNO -> Editor.
+- FX: Drive CC90; Reverb Amount CC91; Delay Amount CC92; Mod Amount CC93.
+- Modulation: Type CC95; Intensity CC96; Rate CC97.
+- Delay: Type CC100; Sync CC101; Time L CC102; Time R CC103 (RX отображается в общем TIME); Feedback CC104; Filter CC105.
+- Reverb: Type CC107; Pre-Delay CC108; special Time CC109 reserved; Low Time CC110; Time/Mid CC111; High Time CC112; Size CC113; Filter CC114.
+- FX type dropdowns now send/receive their documented CC.
+- Matrix Amount uses bipolar GUI -64..+64 mapped to MIDI 0..127.
+
+Не подтвержденные отдельные GUI-контролы не добавлялись. CC109 и Chorus Mode CC98 присутствуют в protocol map, но отдельного GUI-контрола для них в текущем интерфейсе нет.

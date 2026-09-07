@@ -1,0 +1,30 @@
+CUMULATIVE CHECKLIST v1.46
+
+[OK] Source base is v1.45.
+[OK] MOD TYPE raw: 0 / 42 / 84.
+[OK] DELAY TYPE raw: 0 / 25 / 50 / 75 / 100.
+[OK] REVERB TYPE raw: 0 / 32 / 64 / 96.
+[OK] Existing 10 ms MIDI RX queue/coalescing code retained.
+[OK] DELAY TIME R handling retained.
+[OK] Numeric-entry persistence code retained.
+[OK] Value popup code retained.
+[OK] ENV line hit-testing retained.
+[OK] LIVE delayed start retained + persisted.
+[OK] Library path corrected.
+[OK] Song path corrected.
+[OK] *.unosyp set as default preset extension.
+[OK] Inline Library search.
+[OK] Library/service files separation.
+[OK] Same main-page design scale.
+[OK] Forced resize geometry callback disabled.
+[OK] Stable keyboard overlay on all 4 main pages.
+[OK] Keyboard top-right icon programmatic.
+[OK] Mouse and MIDI key animation.
+[OK] PITCH/MOD touch strips.
+[OK] Dropdown auto-close behavior.
+[OK] Preview checkbox style.
+[OK] ADD=copy *.unosyp; IMPORT/DELETE buttons removed.
+[OK] Right-click preset context menu with Rename/Copy/Cut/Paste/Delete.
+[OK] Topbar INIT + RANDOM.
+[OK] Sequencer RANDOM.
+[OK] Tests and validation files live only in Docs.

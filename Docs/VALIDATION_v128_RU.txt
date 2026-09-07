@@ -1,0 +1,12 @@
+Validation v1.28
+[PASS] python -m py_compile
+[PASS] ARP+SEQ transport contains PLAY + REC, no RUN/STOP pair.
+[PASS] PLAY toggle sends MIDI Start/Stop.
+[PASS] REC path receives Note On and selected TARGET CC automation.
+[PASS] MONO/POLY note limit enforced by recorder.
+[PASS] MIDI Clock advances step at 24 PPQN / 6 clocks per 1/16.
+[PASS] Startup autoconnect calls saved MIDI configuration.
+[PASS] TARGET list exactly 10 approved entries.
+[PASS] LINE 1-4 retained.
+[PASS] draw_synth SHA-256 unchanged: 5bea382393250a1633f9fa9a16061efb52a78093014378fcb8848200982679b2
+[NOTE] ARP ON UI toggle works; hardware enable/disable TX remains intentionally unsent until its MIDI mapping is confirmed.

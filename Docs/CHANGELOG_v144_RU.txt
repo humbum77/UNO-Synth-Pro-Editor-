@@ -1,0 +1,10 @@
+UNO Synth Pro Editor v1.44 — cumulative hardware type + LIVE delay test
+
+Изменения поверх полной v1.43:
+1. MODULATION CC95: аппаратное декодирование типов исправлено на 3 положения полного MIDI-диапазона: CHORUS / PHASER / FLANGER.
+2. REVERB CC107: аппаратное декодирование типов исправлено на 4 положения полного MIDI-диапазона: HALL / PLATE / REVERSE / SPRING.
+3. DELAY CC100 не изменялся: MONO / STEREO / DOUBLER / PING PONG / LCR.
+4. LIVE: DELAYED START теперь OFF, затем 5..60 секунд с шагом 5 секунд. 60 секунд отображается как 1 min.
+5. OFF запускает LIVE сразу; во время отсчёта PLAY превращается в CANCEL и отменяет запуск.
+
+Все cumulative-изменения v1.43 сохранены.

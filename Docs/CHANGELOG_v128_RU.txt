@@ -1,0 +1,11 @@
+UNO Synth Pro Editor v1.28
+
+1. Sequencer transport restored to PLAY + REC only. RUN/STOP removed from ARP+SEQ transport.
+2. PLAY is a toggle: first press sends MIDI Start, second sends MIDI Stop.
+3. REC restored for incoming UNO notes (MONO max 1 / POLY max 3) and selected LINE automation.
+4. Automation REC targets only: CUTOFF 1/2, RESONANCE 1/2, WAVE 1/2/3, SPACING, FM 1/2.
+5. Incoming MIDI Clock advances the recording/play step at 6 clocks per 1/16 step.
+6. Automatic connection to saved MIDI IN/OUT restored at startup.
+7. ARP ON is a real UI toggle again. Hardware ARP enable MIDI command is NOT sent because that mapping is not yet monitor-confirmed.
+8. v1.27 LINE 1-4, TARGET cleanup, full-step note rectangles and shared scrollbar under Piano Roll retained.
+9. SYNTH code unchanged byte-for-byte at draw_synth function level.

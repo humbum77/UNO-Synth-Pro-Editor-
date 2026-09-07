@@ -1,0 +1,19 @@
+UNO Synth Pro Editor v1.29 — VALIDATION
+
+[PASS] python -m py_compile для всех Python-файлов.
+[PASS] Runtime launch под Xvfb.
+[PASS] SYNTH runtime screenshot: Docs/layout_preview_v129_synth.png.
+[PASS] ARP+SEQ runtime screenshot: Docs/layout_preview_v129_seq.png.
+[PASS] FILTER: CUT/RES/ENV/KEY с обеих сторон, равный шаг и симметричный отступ от экрана.
+[PASS] FILTER dropdowns имеют ту же высоту, что CUTOFF/CUT+RES.
+[PASS] FILTER CUTOFF/CUT+RES outer edges совпадают с outer edges экрана.
+[PASS] STEPS direct drag mapping: левый край = 1, правый край = 64.
+[PASS] STEPS numeric input code clamps 1..64.
+[PASS] PLAY toggle runtime state test.
+[PASS] REC toggle runtime state test.
+[PASS] MIDI autoconnect startup call сохранён.
+[PASS] TARGET list остаётся строго из 10 согласованных пунктов.
+[PASS] MIDI FILTER keys/mappings не переименованы и не изменены; KEY — только UI label для F1_TRACK/F2_TRACK.
+[PASS] No standalone MIDI Monitor packaged.
+
+Diff against v1.28: Docs/DIFF_v128_to_v129.txt

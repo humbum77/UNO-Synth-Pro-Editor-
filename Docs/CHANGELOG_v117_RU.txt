@@ -1,0 +1,34 @@
+UNO Synth Pro Editor v1.17
+
+Пакет после аппаратных тестов FILTER через Monitor.
+
+MIDI FILTER — CONFIRMED:
+- Filter 1 Mode / CC30: LP0=0, LP180=25, HP0=50, HP180=75, BYPASS=100.
+- Filter 2 Mode / CC37: 2P Series=0, 4P Series=20, 2P Parallel=40, 4P Parallel=60, Bypass Series=80, Bypass Parallel=100.
+- Filter Link / CC41: OFF=0, CUTOFF=64, CUT+RES=127.
+- Spacing / CC40: -63=0, 0=63, +64=127.
+- Filter 1 Env Amount / CC31: -63=0, 0=63, +64=127.
+- Filter 2 Env Amount / CC38: -63=0, 0=63, +64=127.
+- Filter 1 Key Tracking / CC32: -200%=0, 0%=63, +200%=127.
+- Filter 2 Key Tracking / CC39: -200%=0, 0%=63, +200%=127.
+
+UI / ANIMATION:
+- Filter mode sends exact Monitor-confirmed raw values; no generic normalization.
+- CUTOFF / CUT+RES buttons now send CC41 and support OFF state.
+- RX decodes the same confirmed Filter values back to UI.
+- ENV Amount ranges corrected to -63..+64.
+- Envelope geometry redraw after parameter editing is fast (~short UI transition), instead of the previous slow visual interpolation.
+- Envelope playback timing is independent from UI smoothing. Visual stage duration uses the documented 0..30 s range: zero is instant, values 1..127 are mapped from 0.1 ms to 30 s on an exponential visual time scale.
+- FILTER screen shows the result of modulation over time. Matrix sources LFO 1, LFO 2, Filter Env and Amp Env can animate supported Filter Cutoff destinations.
+- Existing anti-aliased graph rendering is preserved.
+
+GLOBAL NUMERIC CONTROL RULE:
+- Drag: normal editing.
+- Wheel: fine step editing with temporary value popup.
+- Double click: direct keyboard entry near the control.
+- Enter: apply; Esc: cancel; clicking outside: apply.
+- Input is clamped to the valid parameter range.
+- Bipolar values accept negative/zero/positive input.
+- Applying a value sends MIDI only where the mapping is confirmed.
+
+Shutdown fix from v1.16 is retained.

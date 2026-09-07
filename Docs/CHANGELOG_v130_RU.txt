@@ -1,0 +1,21 @@
+UNO Synth Pro Editor v1.30 — SYNTH Reference Layout
+
+Основа: v1.29 FILTER + SEQ UI.
+
+Изменено только в SYNTH:
+- Компоновка верхней рабочей области перестроена по пользовательскому референсу.
+- OSC 1 / OSC 2 сверху; OSC 3 / NOISE под ними — единая группа слева.
+- Добавлен компактный WAVE DRAG / Browse Waveforms mini-manual под OSC-группой.
+- FILTER расположен справа сверху.
+- LFO 1 и LFO 2 расположены рядом под FILTER, каждый в отдельной рамке.
+- В OSC/FILTER/LFO применены вертикальные тонкие фейдеры в визуальном языке проекта v1.29.
+- Внутренние FILTER ENV и AMP ENV не менялись.
+
+Заморожено и сохранено как v1.29:
+- VOICE.
+- FX: код блока перенесён без изменения.
+- MOD MATRIX: код блока перенесён без изменения.
+- ARP + SEQUENCER / SONG / LIBRARY / SETTINGS и логика после draw_seq — без изменений.
+- MIDI engine / protocol / storage / data model — без изменений.
+
+Версия сборки: v1.30.

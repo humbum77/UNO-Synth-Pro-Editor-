@@ -1,0 +1,9 @@
+UNO Synth Pro Editor v1.40 — проверка сборки
+
+PASS — python -m py_compile *.py
+PASS — запуск Tk под Xvfb: приложение оставалось запущенным до тестового timeout.
+PASS — статические проверки требований v1.40.
+PASS — LIVE delayed PLAY: обратный отсчёт, автоматический START и повторное нажатие STOP проверены на MIDI stub.
+PASS — ZIP integrity: unzip -t.
+
+Примечание: Tk Canvas не поддерживает alpha-fill для rectangle. Полупрозрачный светло-серый индикатор реализован стандартным stipple gray50, сохраняя читаемость сетки и данных под ним.

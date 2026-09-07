@@ -1,0 +1,46 @@
+UNO SYNTH PRO — FILTER MIDI TABLE (hardware Monitor confirmed)
+
+CC30 Filter 1 Mode
+0   LP 0°
+25  LP 180°
+50  HP 0°
+75  HP 180°
+100 BYPASS
+
+CC37 Filter 2 Mode
+0   2P Series
+20  4P Series
+40  2P Parallel
+60  4P Parallel
+80  Bypass Series
+100 Bypass Parallel
+
+CC41 Filter Link
+0   OFF
+64  CUTOFF
+127 CUT+RES
+
+CC40 Spacing
+raw 0   = -63
+raw 63  = 0
+raw 127 = +64
+
+CC31 Filter 1 Env Amount
+raw 0   = -63
+raw 63  = 0
+raw 127 = +64
+
+CC38 Filter 2 Env Amount
+raw 0   = -63
+raw 63  = 0
+raw 127 = +64
+
+CC32 Filter 1 Key Tracking
+raw 0   = -200%
+raw 63  = 0%
+raw 127 = +200%
+
+CC39 Filter 2 Key Tracking
+raw 0   = -200%
+raw 63  = 0%
+raw 127 = +200%

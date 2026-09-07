@@ -1,0 +1,13 @@
+UNO Synth Pro Editor v1.35 — validation
+
+PASS: Python syntax (py_compile)
+PASS: Tk launch/render under Xvfb
+PASS: SYNTH preview generated: Docs/layout_preview_v135_synth.png
+PASS: OSC/NOISE fader top/bottom margins = 10 px in design coordinates
+PASS: FILTER faders: y=70, height=202, bottom=272; dropdown row y=282 => 10 px gap
+PASS: LFO faders: y=345, bottom=457; lower buttons start y=467 => 10 px gap
+PASS: Envelope buttons = 70x28 px; y=742; envelope block bottom=780 => 10 px bottom margin
+PASS: Envelope A/D/S/R label top = y=545; envelope block top=535 => 10 px
+PASS: FILTER ENV title placed upper-right; AMP ENV upper-left
+PASS: FX title removed
+PASS: draw_seq and all following source code identical to v1.34

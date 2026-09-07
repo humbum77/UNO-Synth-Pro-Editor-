@@ -1,0 +1,159 @@
+--- /mnt/data/v128orig/app.py	2026-09-05 23:21:37.000000000 +0000
++++ /mnt/data/v129work/app.py	2026-09-06 13:05:07.123025196 +0000
+@@ -19,7 +19,7 @@
+ 
+ class App(tk.Tk):
+  def __init__(self):
+-  super().__init__(); self.title('UNO Synth Pro Editor v1.28 PLAY REC + MIDI Autoconnect'); self.configure(bg=BG)
++  super().__init__(); self.title('UNO Synth Pro Editor v1.29 FILTER + SEQ UI'); self.configure(bg=BG)
+   sw,sh=self.winfo_screenwidth(),self.winfo_screenheight(); w,h=1100,690; self.geometry(f'{w}x{h}+{max(0,(sw-w)//2)}+{max(0,(sh-h)//2)}'); self.minsize(1100,690)
+   self.canvas=tk.Canvas(self,bg=BG,highlightthickness=0);self.canvas.pack(fill='both',expand=True)
+   self.settings=storage.load_settings();self.settings_dirty=False;self.keyboard_visible=bool(self.settings.get('keyboard_visible',False));self.page='SYNTH'
+@@ -403,18 +403,33 @@
+    self.slider(252,y+24+off,200,'TUNE',f'OSC{i}_TUNE',-24,24,True);self.slider(252,y+60+off,200,'FINE',f'OSC{i}_FINE',-100,100,True)
+    if i>1:self.slider(252,y+96+off,200,f'FM 1→{i}',f'FM1{i}')
+   self.slider(165,500,160,'NOISE','NOISE_LEVEL')
+-  # FILTER — labels stay clear of title; only the central screen/control group is positioned upward.
+-  self.rect(492,60,718,265);self.text(505,72,'FILTER',16,bold=True);self.graph(742,98,205,128,'filter')
+-  for j,(lab,key) in enumerate([('CUT1','F1_CUTOFF'),('RES1','F1_RES'),('ENV1','F1_ENV'),('TRACK1','F1_TRACK')]):
+-   if key=='F1_ENV':self.slider(530+j*53,110,100,lab,key,-63,64,True,vertical=True)
+-   elif key=='F1_TRACK':self.slider(530+j*53,110,100,lab,key,-200,200,True,vertical=True)
+-   else:self.slider(530+j*53,110,100,lab,key,0,127,False,vertical=True)
+-  for j,(lab,key) in enumerate([('CUT2','F2_CUTOFF'),('RES2','F2_RES'),('ENV2','F2_ENV'),('TRACK2','F2_TRACK')]):
+-   if key=='F2_ENV':self.slider(1000+j*53,110,100,lab,key,-63,64,True,vertical=True)
+-   elif key=='F2_TRACK':self.slider(1000+j*53,110,100,lab,key,-200,200,True,vertical=True)
+-   else:self.slider(1000+j*53,110,100,lab,key,0,127,False,vertical=True)
+-  self.dropdown(505,250,180,30,FILTER1_MODES[self.choice['F1_MODE']],'F1_MODE',FILTER1_MODES);self.slider(745,244,200,'SPACING','FILTER_SPACING',-63,64,True);self.dropdown(1010,250,180,30,FILTER2_MODES[self.choice['F2_MODE']],'F2_MODE',FILTER2_MODES)
+-  self.button(760,284,92,25,'CUTOFF',self.filter_link==64,lambda:self.set_filter_link(64),size=9);self.button(858,284,105,25,'CUT+RES',self.filter_link==127,lambda:self.set_filter_link(127),size=9)
++  # FILTER v1.29 — compact symmetric geometry from the approved sketch; leave intentional empty space.
++  fx,fy,fw,fh=492,60,718,265
++  self.rect(fx,fy,fw,fh);self.text(fx+fw/2,72,'FILTER',16,TEXT,'n',True)
++  screen_x,screen_y,screen_w,screen_h=741,98,205,128
++  self.graph(screen_x,screen_y,screen_w,screen_h,'filter')
++  # Equal fader spacing on both sides; KEY1/CUT2 are equally distant from the screen.
++  left_lines=(525,580,635,690);right_lines=(997,1052,1107,1162)
++  for line_x,(lab,key) in zip(left_lines,[('CUT','F1_CUTOFF'),('RES','F1_RES'),('ENV','F1_ENV'),('KEY','F1_TRACK')]):
++   sx=line_x-6
++   if key=='F1_ENV':self.slider(sx,112,100,lab,key,-63,64,True,vertical=True)
++   elif key=='F1_TRACK':self.slider(sx,112,100,lab,key,-200,200,True,vertical=True)
++   else:self.slider(sx,112,100,lab,key,0,127,False,vertical=True)
++  for line_x,(lab,key) in zip(right_lines,[('CUT','F2_CUTOFF'),('RES','F2_RES'),('ENV','F2_ENV'),('KEY','F2_TRACK')]):
++   sx=line_x-6
++   if key=='F2_ENV':self.slider(sx,112,100,lab,key,-63,64,True,vertical=True)
++   elif key=='F2_TRACK':self.slider(sx,112,100,lab,key,-200,200,True,vertical=True)
++   else:self.slider(sx,112,100,lab,key,0,127,False,vertical=True)
++  # SPACING stays exactly under the filter screen.
++  self.slider(screen_x,248,screen_w,'SPACING','FILTER_SPACING',-63,64,True)
++  # Bottom selectors align to the outer CUT/KEY fader lines and match button height.
++  ctrl_y,ctrl_h=282,28;drop_w=174
++  self.dropdown(left_lines[0],ctrl_y,drop_w,ctrl_h,FILTER1_MODES[self.choice['F1_MODE']],'F1_MODE',FILTER1_MODES)
++  self.dropdown(right_lines[-1]-drop_w,ctrl_y,drop_w,ctrl_h,FILTER2_MODES[self.choice['F2_MODE']],'F2_MODE',FILTER2_MODES)
++  # CUTOFF / CUT+RES outer edges align strictly to the screen edges.
++  gap=6;bw=(screen_w-gap)/2
++  self.button(screen_x,ctrl_y,bw,ctrl_h,'CUTOFF',self.filter_link==64,lambda:self.set_filter_link(64),size=9)
++  self.button(screen_x+bw+gap,ctrl_y,bw,ctrl_h,'CUT+RES',self.filter_link==127,lambda:self.set_filter_link(127),size=9)
+   # LFO — taller waveform screens; SYNC/RETRIG before screen.
+   self.rect(492,335,756,190);self.text(505,347,'LFO',16,bold=True)
+   for n,y in [(1,382),(2,457)]:
+@@ -459,6 +474,11 @@
+   self.text(28,540,'PATTERN',10,bold=True)
+   for i in range(16):
+    r=i//8;c=i%8;self.button(28+c*32,562+r*46,27,38,str(i+1),self.arp_trig[i],lambda i=i:self.toggle_arp(i),size=8)
++  # Small in-panel manual: informative, low contrast, no extra frame.
++  self.text(28,676,'PATTERN QUICK GUIDE',8,MUTED,bold=True)
++  self.text(28,700,'ON STEP  — note plays',8,MUTED)
++  self.text(28,720,'EMPTY STEP — MUTE',8,MUTED)
++  self.text(28,740,'Click 1–16 to toggle a step',8,MUTED)
+ 
+   sx,sy,sw=315,60,940;self.rect(sx,sy,sw,bottom-sy);self.text(333,78,'SEQUENCER',15,bold=True)
+   # 16 fixed-width columns are visible. More steps never shrink the cells.
+@@ -562,17 +582,25 @@
+   hsy=538;self.line(grid_x,hsy,grid_x+grid_w,hsy,EDGE,4);thumbw=grid_w*visible/64;htx=grid_x+(grid_w-thumbw)*(first/(64-visible));self.line(htx,hsy,htx+thumbw,hsy,ORANGE,5);self.hitbox(grid_x,hsy-8,grid_w,16,'seq_hscroll',None,{'x':grid_x,'w':grid_w,'thumb':thumbw})
+ 
+   rx=1265;rw=325;self.rect(rx,60,rw,bottom-60)
+-  self.button(rx+14,78,145,48,'PLAY',self.seq_playing,self.toggle_seq_play);self.button(rx+166,78,145,48,'REC',self.seq_recording,self.toggle_seq_record)
++  self.button(rx+14,78,145,48,'PLAY ▶',self.seq_playing,self.toggle_seq_play);self.button(rx+166,78,145,48,'REC ●',self.seq_recording,self.toggle_seq_record)
+   self.rect(rx+10,140,rw-20,118);self.text(rx+24,156,'SEQUENCE EDIT',13,bold=True)
+   for j,(lab,act) in enumerate((('CLEAR',self.seq_clear),('COPY',self.seq_copy),('PASTE',self.seq_paste),('FILL',self.seq_fill))):self.button(rx+20+j*70,194,64,44,lab,False,act,size=8)
+   self.rect(rx+10,270,rw-20,330);self.text(rx+24,286,'SEQUENCE SETTINGS',13,bold=True)
+   self.text(rx+24,330,'OVERDUB',9,TEXT);self.dropdown(rx+130,314,170,38,self.seq_overdub,'SEQ_OVERDUB',['MONO','POLY'])
+   self.text(rx+24,378,'TRANSPOSE',9,TEXT);self.dropdown(rx+130,362,170,38,str(self.preset.sequence.transpose),'SEQ_TRANS',list(range(-12,13)))
+   self.text(rx+24,426,'SWING',9,TEXT);self.slider(rx+130,426,120,'','SEQ_SWING',0,100,show_label=False);self.text(rx+282,430,f'{int(self.values.get("SEQ_SWING",0))}%',8,TEXT,'e')
+-  # STEPS is the actual polymetric sequence length, adjustable one step at a time.
+-  self.text(rx+24,474,'STEPS',9,TEXT);self.button(rx+130,458,42,38,'−',False,lambda:self.change_seq_steps(-1),size=13);self.rect(rx+178,458,68,38,'#11171a',EDGE);self.text(rx+212,477,str(seq_len),11,ORANGE,'center');self.button(rx+252,458,48,38,'+',False,lambda:self.change_seq_steps(1),size=13)
++  # STEPS 1..64 uses the same thin-line language as numeric controls: drag + double-click entry.
++  self.text(rx+24,474,'STEPS',9,TEXT);steps_x,steps_y,steps_w=rx+130,474,170;st=(seq_len-1)/63
++  self.line(steps_x,steps_y+4,steps_x+steps_w,steps_y+4,EDGE,3);self.line(steps_x,steps_y+4,steps_x+steps_w*st,steps_y+4,ORANGE,3)
++  self.hitbox(steps_x,steps_y-8,steps_w,24,'seq_steps','SEQ_STEPS',(1,64,False,False))
+   self.text(rx+24,522,'RESOLUTION',9,TEXT);self.dropdown(rx+130,506,170,38,self.seq_resolution,'SEQ_RES',['1/4','1/8','1/16','1/32'])
+   for j,lab in enumerate(('STRAIGHT','TRIPLET','DOTTED')):self.button(rx+20+j*94,550,88,42,lab,self.seq_timing==lab,lambda lab=lab:self.set_seq_timing(lab),size=8)
++  self.text(rx+24,632,'QUICK GUIDE',8,MUTED,bold=True)
++  self.text(rx+24,656,'LMB — edit step',8,MUTED)
++  self.text(rx+24,676,'SHIFT + LMB — Pencil (4 points / step)',8,MUTED)
++  self.text(rx+24,696,'Mouse wheel over Piano Roll — notes',8,MUTED)
++  self.text(rx+24,716,'Horizontal bar — steps 1–64',8,MUTED)
++  self.text(rx+24,736,'Double-click STEPS — type 1–64',8,MUTED)
+ 
+  def draw_song(self):
+   kbtop=850 if self.keyboard_visible else 982
+@@ -668,6 +696,7 @@
+     if kind=='action':
+      if callable(data):data()
+     elif kind=='slider':self.drag=h;self._set_slider(h,x,y);self._set_popup(h)
++    elif kind=='seq_steps':self.drag=h;self._set_seq_steps(h,x)
+     elif kind in ('lfo_wave','osc_wave'):self.drag=h;self._drag_origin=(y,float(self.values.get(key,0)))
+     elif kind=='envpoint':self.drag=h;self._drag_origin=(x,y)
+     elif kind=='choice':self._open_dropdown(h,key,data)
+@@ -707,11 +736,12 @@
+  def double_click(self,e):
+   x=(e.x-self.ox)/self.scale;y=(e.y-self.oy)/self.scale;h=self._hit_at(x,y)
+   if h and h[4]=='slider':self._begin_numeric_entry(h)
++  elif h and h[4]=='seq_steps':self._begin_numeric_entry((h[0],h[1],h[2],h[3],'slider','SEQ_STEPS',(1,64,False,False)))
+   elif h and h[4] in ('lfo_wave','osc_wave'):self._begin_numeric_entry((h[0],h[1],h[2],h[3],'slider',h[5],(0,127,False,False)))
+   return 'break'
+  def _begin_numeric_entry(self,h):
+   self._finish_numeric_entry(False)
+-  hx,hy,hw,hh,kind,key,data=h;lo,hi,vert,bip=data;v=self.values.get(key,lo)
++  hx,hy,hw,hh,kind,key,data=h;lo,hi,vert,bip=data;v=(self.preset.sequence.length if key=='SEQ_STEPS' else self.values.get(key,lo))
+   ent=tk.Entry(self.canvas,bg='#090c0e',fg=ORANGE,insertbackground=ORANGE,relief='solid',bd=1,justify='center',font=('Segoe UI',10,'bold'))
+   ent.insert(0,str(int(v) if float(v).is_integer() else v));px=self.X(hx+hw/2);py=self.Y(hy-22);win=self.canvas.create_window(px,py,window=ent,width=max(64,self.S(72)),height=max(25,self.S(28)),anchor='center')
+   self._numeric_entry={'entry':ent,'window':win,'key':key,'lo':lo,'hi':hi};ent.focus_set();ent.selection_range(0,'end')
+@@ -722,7 +752,9 @@
+   self._numeric_entry=None
+   if apply:
+    try:
+-    raw=d['entry'].get().strip().replace(',','.').replace('+','');val=float(raw);lo,hi=d['lo'],d['hi'];val=clamp(val,lo,hi);val=int(round(val)) if float(lo).is_integer() and float(hi).is_integer() else val;self.set_value(d['key'],val,lo,hi)
++    raw=d['entry'].get().strip().replace(',','.').replace('+','');val=float(raw);lo,hi=d['lo'],d['hi'];val=clamp(val,lo,hi);val=int(round(val)) if float(lo).is_integer() and float(hi).is_integer() else val
++    if d['key']=='SEQ_STEPS':self.preset.sequence.length=int(val);self.status=f'STEPS = {int(val)}'
++    else:self.set_value(d['key'],val,lo,hi)
+    except Exception:self.status='Invalid numeric value'
+   try:self.canvas.delete(d['window'])
+   except Exception:pass
+@@ -733,6 +765,7 @@
+   if not self.drag:return
+   x=(e.x-self.ox)/self.scale;y=(e.y-self.oy)/self.scale;kind=self.drag[4]
+   if kind=='slider':self._set_slider(self.drag,x,y);self._set_popup(self.drag)
++  elif kind=='seq_steps':self._set_seq_steps(self.drag,x)
+   elif kind=='pitchwheel':self._wheel_pitch(y,self.drag[1],self.drag[3])
+   elif kind=='modwheel':self._wheel_mod(y,self.drag[1],self.drag[3])
+   elif kind in ('lfo_wave','osc_wave'):
+@@ -776,6 +809,8 @@
+    if hx<=x<=hx+hw and hy<=y<=hy+hh:
+     if kind=='slider':
+      lo,hi,vert,bip=data;self.set_value(key,clamp(self.values.get(key,lo)+d,lo,hi),lo,hi);self._set_popup(h);self.after(700,self._clear_popup)
++    elif kind=='seq_steps':
++     self.preset.sequence.length=clamp(int(self.preset.sequence.length)+d,1,64);self.popup=(hx+hw/2,hy-22,str(int(self.preset.sequence.length)));self.redraw();self.after(700,self._clear_popup)
+     elif kind=='choice':
+      if self.open_dropdown and self.open_dropdown['key']==key:self._scroll_dropdown(-d)
+     elif kind=='dropdown_item':
+@@ -947,6 +982,10 @@
+   self.redraw()
+  def set_seq_timing(self,v):self.seq_timing=v;self.redraw()
+  def set_seq_visible(self,n):self.seq_visible=n;self.redraw()
++ def _set_seq_steps(self,h,x):
++  hx,hy,hw,hh,kind,key,data=h;v=1+round(clamp((x-hx)/max(1,hw),0,1)*63)
++  if int(self.preset.sequence.length)!=v:self.preset.sequence.length=v
++  self.popup=(hx+hw/2,hy-22,str(v));self.redraw()
+  def change_seq_steps(self,d):
+   self.preset.sequence.length=max(1,min(64,int(self.preset.sequence.length)+int(d)));self.redraw()
+  def set_seq_param(self,p):self.seq_param=p;self.redraw()

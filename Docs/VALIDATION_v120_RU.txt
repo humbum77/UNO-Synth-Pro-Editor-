@@ -1,0 +1,12 @@
+v1.20 validation
+- Python syntax: PASS (py_compile all project .py)
+- Startup geometry in source: 1024x640
+- Minimum geometry: 1024x640
+- MIDI autoconnect: disabled (Safe Start retained)
+- OSC INIT source: OSC1 WAVE=42 (Saw point in current continuous UI morph), LEVEL=127; OSC2/3 WAVE=0 Triangle, LEVEL=0
+- FILTER group shifted upward 15 virtual px
+- LFO WAVE screen hit controls present for both LFO rows
+- LIN/EXP/LOG present for both LFO rows
+- SYNC and RETRIG retained for both LFO rows
+- Interactive ENV point controls present for FENV and AENV
+- Standalone Monitor: not packaged

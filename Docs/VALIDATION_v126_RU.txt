@@ -1,0 +1,14 @@
+Проверка v1.26
+- Python py_compile: PASS.
+- Runtime под Xvfb: PASS.
+- Реальный runtime preview: Docs/layout_preview_v126.png.
+- draw_synth SHA-256 совпадает с v1.25: PASS.
+- ARP PATTERN default = [True] * 16: PASS.
+- Sequence STEPS range в обработчике: clamp 1..64: PASS.
+- Piano Roll note model: C0..C7 (MIDI 12..96), default lower note C2 (36): PASS.
+- Fixed 16-column viewport + horizontal offset to step 64: PASS.
+- Shared horizontal offset used by Piano Roll / Step Parameter / MOD: PASS.
+- Vertical scrollbar present: PASS.
+- Every fourth step brighter: PASS.
+- Inactive steps shaded: PASS.
+- A note color = #e54848 (red): PASS.

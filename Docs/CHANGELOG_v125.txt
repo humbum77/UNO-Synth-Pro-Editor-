@@ -1,0 +1,18 @@
+UNO Synth Pro Editor v1.25
+
+ARP + SEQUENCER ONLY
+- ARPEGGIATOR outer frame extended to bottom; inner controls unchanged.
+- PATTERN 1-16 moved slightly upward.
+- SEQUENCER outer frame extended to bottom.
+- Right-column outer frame extended to bottom; right-column content unchanged.
+- Released vertical space distributed across Piano Roll, Step Parameter and MOD Automation.
+- Piano Roll note-row height preserved; visible note rows increased from 18 to 22.
+- Piano Roll / Step Parameter / MOD Automation keep one shared horizontal step grid.
+- MOD Automation: normal LMB edits one step.
+- MOD Automation: Shift + LMB activates Pencil mode with 4 subpoints per step for curves.
+- Pencil data is stored locally as fine_values. Hardware TX resolution remains unverified.
+
+UNCHANGED
+- SYNTH source verified identical to v1.24.
+- SONG / LIBRARY / SETTINGS not intentionally changed.
+- Global keyboard not changed.

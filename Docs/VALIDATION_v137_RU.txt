@@ -1,0 +1,9 @@
+UNO Synth Pro Editor v1.37 — проверка сборки
+
+PASS: py_compile для app.py, data_model.py, midi_engine.py, midi_interface.py, protocol_map.py, storage.py, main.py.
+PASS: запуск Tkinter под Xvfb; окно успешно создано 1375x859 и работало до завершения теста.
+PASS: создан контрольный снимок Docs/layout_preview_v137_synth.png.
+PASS: визуально подтверждено отсутствие верхнего заголовка NOISE.
+PASS: SYNC / RETRIG в обоих LFO расположены с нижним отступом 10 px.
+PASS: тестовые/проверочные файлы находятся в Docs.
+PASS: ZIP проверен командой unzip -t.

@@ -1,0 +1,15 @@
+UNO Synth Pro Editor v1.39 — изменения относительно v1.38
+
+ARP + SEQUENCER
+- Добавлена общая подсветка текущего шага при PLAY одновременно в Piano Roll, Step Parameter и выбранной LINE 1–4.
+- Добавлена перерисовка GUI на каждом новом 1/16 шаге MIDI Clock, чтобы индикатор движения обновлялся визуально.
+- GATE / ACC / VELOCITY / LENGTH сдвинуты вправо: левая граница GATE совпадает с левой границей шага 1 Piano Roll.
+- LINE 1 / LINE 2 / LINE 3 / LINE 4 выровнены идентично: LINE 1 начинается с той же границы шага 1.
+- Отдельная кнопка STOP не добавлялась; PLAY остаётся Play/Stop.
+
+SYNTH
+- ADSR defaults для FILTER ENV и AMP ENV: A=4, D=20, S=127, R=20.
+- Кнопки VOICE MONO / LEGATO / PARA уменьшены до 100 px по ширине и распределены аккуратнее внутри VOICE; высота сохранена 36 px.
+
+Прочее
+- Существующая MIDI transport/playback логика не заменялась.

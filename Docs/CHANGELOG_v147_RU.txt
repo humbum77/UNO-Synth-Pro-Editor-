@@ -1,0 +1,11 @@
+UNO Synth Pro Editor v1.47 — cumulative
+
+- SEQUENCER: восстановлен software playback: Note On/Off, Gate, Tie, Velocity, Transpose, до 3 нот на шаг, Probability, step automation CC.
+- PLAY-индикатор сделан почти прозрачным (sparse stipple).
+- LIBRARY: путь по умолчанию ~/Documents/IK Multimedia/UNO Synth Pro; поиск *.unosyp также в категориях/подпапках, songs исключена.
+- SONG/LIVE: путь ~/Documents/IK Multimedia/UNO Synth Pro/songs; формат песни по умолчанию *.unosong.
+- LIVE показывает сохранённые *.unosong; LOAD SONG фильтрует *.unosong.
+- Верхняя панель: RANDOM слева от выбора пресета; INIT справа; пустая зона; SAVE | STORE | SETTINGS; READ оставлена как временная служебная кнопка; RESTORE удалена.
+- SAVE сохраняет локальный *.unosyp в папку пресетов по умолчанию.
+- Двусторонняя смена номера пресета Editor <-> UNO через Bank Select/Program Change; входящая смена не эхо-отправляется обратно.
+- Сохранены аппаратно подтверждённые FX enum: MOD 0/42/84, DELAY 0/25/50/75/100, REVERB 0/32/64/96.

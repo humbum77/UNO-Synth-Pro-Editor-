@@ -1,0 +1,6 @@
+UNO Synth Pro Editor v1.41 validation
+
+python -m py_compile *.py: PASS
+Tk launch under Xvfb: PASS (process remained active until intentional timeout; exit 124)
+MIDI map source: IK Multimedia UNO Synth Pro MIDI Implementation Chart v1.0.0
+ZIP integrity: checked after packaging

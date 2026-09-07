@@ -1,0 +1,12 @@
+UNO Synth Pro Editor v1.33
+
+Base: working v1.32.
+
+Changes:
+1. Startup GUI size increased by 25%: 1100x690 -> 1375x859 (same design proportions).
+2. Window aspect ratio is constrained to the current design ratio so resizing does not create unused letterbox areas or distort the GUI.
+3. SYNTH Mini Manual removed completely.
+4. Former Mini Manual height redistributed between OSC1/OSC2 and OSC3/NOISE. Row-to-row vertical gap = exactly 10 design px. Four oscillator/noise frames are 231.5 design px high.
+5. OSC/NOISE internal controls remain the same size and are centered vertically in the new frames.
+6. Global popup/drop-down overlay accent changed from orange to light grey. Core orange UI accents are unchanged.
+7. All graph/display containers (OSC WAVE, FILTER, LFO, ENV) have no separate dark rectangle or border; only graph content remains on the parent panel.

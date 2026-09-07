@@ -1,0 +1,14 @@
+UNO Synth Pro Editor v1.43 — validation
+
+PASS: python -m py_compile для всех runtime .py.
+PASS: запуск main.py под Xvfb — приложение остаётся запущенным без traceback.
+PASS: DELAY RX CC100: raw 0,25,50,75,100 -> индексы 0,1,2,3,4.
+PASS: REVERB RX CC107: raw 0,25,50,75 -> индексы 0,1,2,3.
+PASS: MODULATION RX CC95: raw 0,25,50 -> 0,1,2; значения выше последнего не выводят индекс за диапазон 0..2.
+PASS: burst 100 входящих CC одного параметра -> после одного 10-мс drain применяется последнее значение.
+PASS: DELAY TIME R CC103 обновляет DELAY_TIME_R отдельно от DELAY_TIME.
+PASS: numeric Entry остаётся отображённым после полного redraw canvas.
+PASS: resize 1400x900 автоматически корректируется до 1440x900 (1.6 = 1600/1000) в SYNTH без клавиатуры.
+PASS: ZIP integrity test.
+
+Ограничение проверки: реальные аппаратные ощущения задержки и все физические энкодеры требуют финального теста на самом UNO Synth Pro; программная очередь и декодирование проверены локально.

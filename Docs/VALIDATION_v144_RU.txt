@@ -1,0 +1,9 @@
+Проверка v1.44:
+- Python syntax: PASS
+- GUI launch under Xvfb: PASS
+- ZIP integrity: PASS
+- MODULATION enum mapping test: PASS (0/64/127 -> 0/1/2)
+- REVERB enum mapping test: PASS (0/42/85/127 -> 0/1/2/3)
+- DELAY mapping unchanged: PASS
+- LIVE delayed-start options: OFF + 5..60 step 5: PASS
+Примечание: окончательная проверка MIDI enum-значений требует реального UNO Synth Pro.

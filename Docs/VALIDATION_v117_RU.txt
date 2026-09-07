@@ -1,0 +1,18 @@
+Validation v1.17
+
+[PASS] Python compile: app.py and project modules.
+[PASS] Startup/close under Xvfb; clean shutdown retained.
+[PASS] Monitor-confirmed Filter MIDI encode test:
+       Spacing -63/0/+64 -> CC40 0/63/127.
+       F1 Env -63/0/+64 -> CC31 0/63/127.
+       Key Tracking -200/0/+200 -> raw 0/63/127.
+[PASS] Exact Filter mode values: F1 HP180 -> CC30=75; F2 Bypass Parallel -> CC37=100.
+[PASS] Filter Link: CUTOFF -> CC41=64; second click -> OFF=0.
+[PASS] RX decode helpers for Env Amount / Key Tracking extrema and center.
+[PASS] Double-click direct numeric entry; +64 F1 ENV -> CC31=127.
+[PASS] LFO 1 Matrix route to Filter 1 Cutoff produces time-varying visual modulation delta.
+[PASS] Anti-aliased graph renderer remains enabled when Pillow is installed.
+
+Important:
+- The exact hardware curve that converts each 0..127 envelope raw value to milliseconds was not measured by Monitor in this test set. v1.17 uses a visual exponential mapping over the documented 0.1 ms..30 s range, with raw 0 treated as instant. It is intentionally isolated from MIDI encoding and can be calibrated later without changing MIDI data.
+- Unknown MOD MATRIX SysEx storage format is still not sent to UNO. Matrix animation in this build is editor-side visualization based on local route state.

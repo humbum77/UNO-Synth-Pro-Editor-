@@ -1,0 +1,32 @@
+UNO Synth Pro Editor v1.46 — cumulative build
+
+База: v1.45 (hardware-confirmed FX values preserved).
+
+Зафиксированные изменения:
+1. LIBRARY / presets path: ~\Documents\IK Multimedia\UNO Synth Pro
+2. SONG path: ~\Documents\IK Multimedia\UNO Synth Pro\song
+3. Формат пресетов по умолчанию: *.unosyp
+4. LIBRARY search — встроенное поле ввода, фильтрация по мере набора; отдельное окно Search удалено.
+5. LIBRARY использует тот же базовый масштаб 1600x1000, что SYNTH / ARP + SEQUENCER / SONG.
+6. Удалена принудительная коррекция geometry() при ручном resize, вызывавшая рывки.
+7. Клавиатура — стабильный overlay без изменения геометрии окна, доступна в SYNTH / ARP + SEQUENCER / SONG / LIBRARY.
+8. Верхняя правая иконка клавиатуры рисуется программно: 3 белые + 2 чёрные клавиши.
+9. Клавиши имеют визуальное нажатие и активную оранжевую индикацию; реагируют также на MIDI Note On/Off от UNO.
+10. PITCH / MOD оформлены как вертикальные touch strips; PITCH возвращается в центр, MOD показывает текущий уровень.
+11. Выпадающие списки закрываются при переходе на другую вкладку и при клике вне списка; открытие другого dropdown заменяет предыдущий.
+12. LIBRARY PREVIEW — обычный компактный checkbox в стиле DELAY SYNC.
+13. LIBRARY ADD теперь импортирует/копирует *.unosyp в папку пресетов по умолчанию.
+14. Отдельные кнопки IMPORT и DELETE удалены.
+15. Правый клик по пресету: Rename / Copy / Cut / Paste / Delete.
+16. Операции Copy/Cut/Paste/Rename/Delete работают и для opaque/binary *.unosyp без попытки изменять их содержимое.
+17. Служебный settings.json не отображается как пресет, т.к. библиотека сканирует только *.unosyp.
+18. В верхней панели рядом с выбором пресета добавлены INIT и RANDOM.
+19. INIT возвращает патч к исходным значениям без permanent STORE.
+20. RANDOM синтезатора — weighted / musically constrained randomization; не изменяет секвенсор.
+21. В SEQUENCE EDIT добавлена RANDOM: scale-constrained note random walk + density + velocity/gate/accent/tie/probability + smooth automation randomization; не меняет synth patch.
+22. LIVE delayed start теперь сохраняется в settings.
+
+Hardware-confirmed FX mappings из v1.45 НЕ ИЗМЕНЕНЫ:
+- MOD TYPE: [0, 42, 84]
+- DELAY TYPE: [0, 25, 50, 75, 100]
+- REVERB TYPE: [0, 32, 64, 96]
