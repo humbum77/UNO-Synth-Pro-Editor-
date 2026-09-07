@@ -12,10 +12,13 @@ Current version: **v1.47**
 
 Core sound editing (oscillators, filters, envelopes, LFOs, modulation matrix, effects) works the same way as in the official editor — listed below is only what it does not have, or what is done differently here.
 
-- **A preset library that is not limited to 256 slots.** It uses the standard `*.unosyp` preset files, but adds its own categories, tags and search across nested folders — your collection is no longer bound to the synth's memory slots.
+- **Everything on one SYNTH page.** Synthesis parameters, the 16-slot modulation matrix and the whole effects section are visible and editable at the same time, without switching tabs or pages.
+- **A preset library that is not limited to 256 slots.** It uses the standard `*.unosyp` preset files, but adds its own categories, tags and search across nested folders — your collection is no longer bound to the synth's memory slots. You can store as many copies of the same patch as you like, each with a different sequence — handy when assembling a song later.
 - **Auditioning presets without writing them into the synth's memory.** Any preset from the library can be heard on the hardware immediately, without occupying or overwriting one of the 256 slots — something the official editor cannot do.
 - **A genuinely usable SONG mode.** The whole song is visible at once on a 64-position grid: presets are placed with the mouse, and length, tempo and copying sections take a couple of clicks. Editing a song on the synth itself is painful; here it is ordinary on-screen work.
 - **A brand-new LIVE mode.** Instant access to saved song files on stage: the song list on the left, a 4×16 grid for switching on the fly. Nothing with this logic exists in the synth or in the official editor — it turns the UNO Synth Pro into an instrument for live performance.
+- **FILL 64 in the sequencer.** One click repeats the pattern you have written across all 64 steps.
+- **Musical randomisation.** RANDOM generates a complete patch using algorithms tuned to produce usable sounds rather than noise, and the sequencer has its own randomiser: a scale-constrained random walk with note density, humanised velocity and gate, and smooth CC automation.
 
 ---
 
@@ -27,7 +30,8 @@ Core sound editing (oscillators, filters, envelopes, LFOs, modulation matrix, ef
 - Sequencer with up to 64 steps and a piano roll: up to 3 notes per step; a tie is drawn as a continuation of the note block.
 - Playback direction: Forward / Backward / Back'n'Forth, Transpose ±12 semitones.
 - Per-step editor: Gate, Accent, Velocity, Length, Probability, and four CC automation slots MOD1–MOD4.
-- FILL 64 — repeats the current pattern up to 64 steps.
+- FILL 64 — repeats the current pattern up to 64 steps; CLEAR, COPY, PASTE and RANDOM sit next to it.
+- RANDOM generates a melodic sequence together with its CC automation.
 - Software playback: the editor sends Note On/Off itself, honouring Gate, Tie, Velocity, Transpose, step probability and per-step CC automation.
 
 ### Preset library (LIBRARY page)
