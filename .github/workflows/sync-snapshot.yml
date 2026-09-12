@@ -1,0 +1,54 @@
+name: Sync UNO snapshot
+
+on:
+  push:
+    branches:
+      - sync-v0.9.0-beta
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check snapshot marker
+        id: marker
+        shell: bash
+        run: |
+          if [ -f .sync/READY ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Reconstruct and sync snapshot
+        if: steps.marker.outputs.ready == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .sync/chunk_* | base64 -d > /tmp/uno_snapshot.zip
+          rm -rf /tmp/uno_snapshot
+          mkdir -p /tmp/uno_snapshot
+          unzip -q /tmp/uno_snapshot.zip -d /tmp/uno_snapshot
+          SRC="/tmp/uno_snapshot/UNO_Pro_Advanced_v1.64_FIX2"
+          test -f "$SRC/app.py"
+          test -f "$SRC/main.py"
+          test -d "$SRC/Docs"
+          test -d "$SRC/Assets"
+          cp -a "$SRC"/. ./
+          rm -rf .sync
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Snapshot already synchronized"
+            exit 0
+          fi
+          git commit -m "Sync full v1.64 FIX2 snapshot for v0.9.0-beta baseline"
+          git push origin HEAD:sync-v0.9.0-beta
