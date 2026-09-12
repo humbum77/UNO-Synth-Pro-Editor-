@@ -5,10 +5,14 @@ Unknown bulk-store semantics remain intentionally locked.
 IK_HEADER = bytes([0xF0,0x00,0x21,0x1A,0x02,0x03])
 STATE_READ = bytes([0xF0,0x00,0x21,0x1A,0x02,0x03,0x37,0x00,0x00,0xF7])
 PRESET_NAME_READ_PREFIX = bytes([0xF0,0x00,0x21,0x1A,0x02,0x03,0x24,0x01])
+PRESET_PAGE_READ_PREFIX = bytes([0xF0,0x00,0x21,0x1A,0x02,0x03,0x29])
 def preset_name_read(slot):
     n=max(1,min(256,int(slot)))-1
     return PRESET_NAME_READ_PREFIX+bytes([n//128,n%128,0xF7])
-COMMANDS={0x24:'preset name/info',0x28:'bulk preset write (LOCKED)',0x32:'current preset notification',0x33:'preset select/load (partial)',0x37:'current state read'}
+def preset_page_read(slot,page):
+    n=max(1,min(256,int(slot)))-1;page=max(0,min(4,int(page)))
+    return PRESET_PAGE_READ_PREFIX+bytes([n//128,n%128,page,0xF7])
+COMMANDS={0x24:'preset name/info',0x28:'bulk preset-state write/store (LOCKED)',0x29:'hardware preset/page read',0x32:'current preset notification',0x33:'preset select/load (partial)',0x36:'current-buffer load (EXPERIMENTAL / not hardware-confirmed)',0x37:'current state read'}
 CC={
  'BANK':0,'MOD_WHEEL':1,'GLIDE':5,'VCA':7,'SWING':9,
  'OSC1_WAVE':12,'OSC2_WAVE':13,'OSC3_WAVE':14,
