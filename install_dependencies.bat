@@ -1,4 +1,4 @@
 @echo off
-python -m pip install --upgrade pip
-python -m pip install pillow
+cd /d "%~dp0"
+python -m pip install -r Docs\requirements.txt
 pause
