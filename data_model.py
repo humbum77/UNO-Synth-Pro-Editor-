@@ -3,10 +3,13 @@ from typing import List,Dict,Optional
 import json
 @dataclass
 class Step:
-    notes:List[int]=field(default_factory=list); velocity:int=100; length:float=0.6; gate:int=0; accent:int=0; tie:bool=False; probability:int=100
+    notes:List[int]=field(default_factory=list); velocity:int=100; length:float=1.0; gate:int=0; accent:int=0; tie:bool=False; probability:int=100
+    note_velocities:List[int]=field(default_factory=list); note_extras:List[int]=field(default_factory=list); control_raw:Optional[int]=None
 @dataclass
 class Sequence:
     steps:List[Step]=field(default_factory=lambda:[Step() for _ in range(64)]); length:int=16; direction:str='Forward'; transpose:int=0
+    length_confirmed:bool=True
+    binary_page_headers:List[str]=field(default_factory=list); binary_page_metadata:List[str]=field(default_factory=list)
     automation:List[Dict]=field(default_factory=lambda:[{'parameter':'CUTOFF 1','values':[64]*64} for i in range(4)])
     def fill64(self,source_len=None):
         n=max(1,min(64,int(source_len or self.length or 1))); base=[Step(**asdict(x)) for x in self.steps[:n]]
