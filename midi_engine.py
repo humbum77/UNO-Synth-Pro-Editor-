@@ -1,5 +1,5 @@
 import sys,logging
-from protocol_map import STATE_READ,preset_name_read
+from protocol_map import STATE_READ,preset_name_read,preset_page_read
 logger=logging.getLogger(__name__)
 class MidiEngine:
  def __init__(self,on_message=None):
@@ -44,6 +44,8 @@ class MidiEngine:
   except Exception:logger.exception('Failed to send SysEx');return False
  def read_state(self):return self.sysex(STATE_READ)
  def read_preset_name(self,n):return self.sysex(preset_name_read(n))
+ def read_preset_page(self,slot,page):return self.sysex(preset_page_read(slot,page))
+ def clock(self):return self._short(0xF8)
  def start(self):return self._short(0xFA)
  def stop(self):return self._short(0xFC)
  def close(self):
