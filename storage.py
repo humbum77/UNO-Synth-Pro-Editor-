@@ -22,7 +22,7 @@ ROOT=DOCUMENTS/'IK Multimedia'/'UNO Synth Pro Editor'
 PRESETS=ROOT
 SONGS=ROOT/'songs'
 SETTINGS=ROOT/'settings.json'
-DEFAULT={'midi_in':'UNO Synth Pro','midi_out':'UNO Synth Pro','midi_controller':'Off','midi_in_channel':1,'midi_out_channel':1,'midi_clock':'Off','sync':'Internal','soft_thru':True,'pr_change':True,'midi_interface':'Auto','knob_behavior':'Relative','pitch_bend_range':2,'master_tuning':0,'keyboard_visible':False,'preview':False,'live_delay':0,'live_slots':[None]*64}
+DEFAULT={'midi_in':'UNO Synth Pro','midi_out':'UNO Synth Pro','midi_controller':'Off','midi_in_channel':1,'midi_out_channel':1,'midi_clock':'Off','sync':'Internal','pr_change':True,'midi_interface':'Auto','pitch_bend_range':2,'keyboard_visible':False,'live_delay':0,'ui_scale':'125%','live_slots':[None]*64}
 _preset_cache=None
 _preset_cache_sig=None
 
@@ -98,6 +98,39 @@ def load_preset(path):
     return Preset(d.get('name','INIT'),d.get('number'),d.get('params',{}),seq,d.get('tags',[]),d.get('category','My Presets'),d.get('source','local'))
 
 
+
+def load_binary_unosyp_state(path):
+    """Read-only decode of the 260-byte synth/current-state embedded in .unosyp."""
+    from unosyp_state_decoder import decode_unosyp_state
+    return decode_unosyp_state(path)
+
+def load_binary_unosyp_sequence(path):
+    """Read-only decode of the confirmed 1081-byte UNO .unosyp sequencer."""
+    from unosyp_seq_decoder import parse_unosyp
+    info=parse_unosyp(Path(path).read_bytes())
+    if not info.get('supported_sequence_variant'):
+        return None
+    seq=Sequence();seq.length_confirmed=False
+    seq.binary_page_headers=[p.get('header_hex','') for p in info.get('pages',[])]
+    seq.binary_page_metadata=[p.get('metadata_hex','') for p in info.get('pages',[])]
+    active_last=0
+    for decoded in info.get('steps',[])[:64]:
+        idx=int(decoded.get('step',0))-1
+        if not 0<=idx<64:continue
+        notes=[];vels=[];extras=[]
+        for voice in decoded.get('voices',[])[:3]:
+            if voice.get('empty'):continue
+            note=int(voice.get('note_raw',255))
+            if not 0<=note<=127:continue
+            notes.append(note);vels.append(max(0,min(127,int(voice.get('velocity',100)))))
+            extras.append(int(voice.get('extra_raw',255))&0xFF)
+        st=seq.steps[idx];st.notes=notes;st.note_velocities=vels;st.note_extras=extras
+        st.control_raw=int(decoded.get('control_raw',0))&0xFF
+        if vels:st.velocity=vels[0]
+        if notes:active_last=idx+1
+    seq.length=max(16,active_last)
+    return seq
+
 def child_folders(folder):
     """Direct child directories for the LOCAL library browser."""
     try:
@@ -135,3 +168,35 @@ def list_songs():
 
 def save_song(song):
     ensure_dirs();p=SONGS/(_safe(song.name)+'.unosong');song.save(p);return p
+
+# UNO Pro Advanced local-only metadata. Never written into UNO preset files or sent to hardware.
+METADATA=ROOT/'uno_pro_advanced_metadata.json'
+
+def _metadata_key(path):
+    import hashlib
+    path=Path(path)
+    try:return hashlib.sha1(path.read_bytes()).hexdigest()
+    except OSError:return 'path:'+str(path.resolve())
+
+def _load_metadata_db():
+    try:
+        d=json.loads(METADATA.read_text(encoding='utf-8'))
+        return d if isinstance(d,dict) else {}
+    except Exception:return {}
+
+def _save_metadata_db(d):
+    ensure_dirs();fd,tmp=tempfile.mkstemp(prefix='metadata.',suffix='.tmp',dir=str(ROOT))
+    try:
+        with os.fdopen(fd,'w',encoding='utf-8') as f:json.dump(d,f,ensure_ascii=False,indent=2);f.flush();os.fsync(f.fileno())
+        os.replace(tmp,METADATA)
+    finally:
+        try:
+            if os.path.exists(tmp):os.unlink(tmp)
+        except OSError:pass
+
+def get_preset_metadata(path):
+    v=_load_metadata_db().get(_metadata_key(path),{})
+    return {'favorite':bool(v.get('favorite',False)),'colors':[int(i) for i in v.get('colors',[]) if isinstance(i,int) and 0<=i<7], 'order':v.get('order',None)}
+
+def set_preset_metadata(path,meta):
+    d=_load_metadata_db();entry={'favorite':bool(meta.get('favorite',False)),'colors':sorted(set(int(i) for i in meta.get('colors',[]) if 0<=int(i)<7))};order=meta.get('order',None);entry['order']=int(order) if isinstance(order,(int,float)) else None;d[_metadata_key(path)]=entry;_save_metadata_db(d)
